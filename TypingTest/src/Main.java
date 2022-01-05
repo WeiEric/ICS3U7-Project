@@ -52,12 +52,9 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 		
 		loginFrame.setSize(810,600);
 		loginFrame.setLayout(null);
-		loginFrame.add(backBut);
 		
 		signupFrame.setSize(810,600);
 		signupFrame.setLayout(null);
-		signupFrame.add(backBut);
-
 
 		startFrame.setLayout(null);
 		startFrame.setVisible(true);
