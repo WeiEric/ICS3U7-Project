@@ -1,5 +1,10 @@
 import javax.swing.*;
-import java.awt.event.*;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class Main extends keyboardTemplate implements KeyListener, ActionListener{
 
@@ -7,9 +12,13 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 	static JFrame startFrame = new JFrame("Start the typing test");
 	public static JFrame chooseFrame = new JFrame("Levels");
 	static JFrame testFrame = new JFrame("Test");
+	public static JFrame signupFrame = new JFrame("Sign up");
+	public static JFrame loginFrame = new JFrame("Login");
 
 	//buttons
 	static JButton startBut = new JButton("START");
+	static JButton loginBut = new JButton("LOGIN");
+	static JButton signupBut = new JButton("SIGN UP");
 	static JButton easyBut = new JButton("EASY");
 	static JButton mediumBut = new JButton("MEDIUM");
 	static JButton hardBut = new JButton("HARD");
@@ -19,14 +28,36 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 	public static int whichLevel;
 
 	public static void main(String[] args) {
+		
+		Font font1 = new Font("SansSerif", Font.BOLD, 60);
 
-		//starting frame
 		startFrame.setSize(810,600);
-
+		
+		JLabel title = new JLabel("TYPING TEST");
+		title.setBounds(200,100,500,100);
+		title.setFont(font1);
+		startFrame.add(title);
 		//start button
 		startBut.setBounds(350,225,100,50);
 		startBut.addActionListener(new Main());
 		startFrame.add(startBut);
+		
+		loginBut.setBounds(275,300,100,50);
+		loginBut.addActionListener(new Main());
+		startFrame.add(loginBut);		
+		
+		signupBut.setBounds(425,300,100,50);
+		signupBut.addActionListener(new Main());
+		startFrame.add(signupBut);		
+		
+		loginFrame.setSize(810,600);
+		loginFrame.setLayout(null);
+		loginFrame.add(backBut);
+		
+		signupFrame.setSize(810,600);
+		signupFrame.setLayout(null);
+		signupFrame.add(backBut);
+
 
 		startFrame.setLayout(null);
 		startFrame.setVisible(true);
@@ -66,7 +97,17 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 			startFrame.setVisible(false);
 			chooseFrame.setVisible(true);
 		}	
-
+		
+		if (e.getSource() == loginBut) {
+			startFrame.setVisible(false);
+			loginFrame.setVisible(true);
+		}	
+		
+		if (e.getSource() == signupBut) {
+			startFrame.setVisible(false);
+			signupFrame.setVisible(true);
+		}	
+		
 		if(e.getSource() == easyBut) {
 			whichLevel = 1;
 
@@ -141,9 +182,3 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 
 
 }
-
-
-
-
-
-
