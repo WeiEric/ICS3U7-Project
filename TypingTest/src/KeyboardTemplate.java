@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
-public class keyboardTemplate implements KeyListener{
+public class KeyboardTemplate implements KeyListener{
 
 	static JButton buttons[] = new JButton[57];
 	static int codes[] = new int[57];
