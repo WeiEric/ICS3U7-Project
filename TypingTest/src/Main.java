@@ -1,12 +1,10 @@
-import javax.swing.*;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
-public class Main extends keyboardTemplate implements KeyListener, ActionListener{
+import javax.swing.*;
+
+public class Main extends KeyboardTemplate implements KeyListener, ActionListener{
 
 	//frames
 	static JFrame startFrame = new JFrame("Start the typing test");
@@ -115,7 +113,7 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 			easyText.setBounds(0,0,500,300);
 			testFrame.add(easyText);
 
-			keyboardTemplate keyboard = new keyboardTemplate();
+			KeyboardTemplate keyboard = new KeyboardTemplate();
 			keyboard.displayKeyboard(testFrame);
 		}
 
@@ -130,7 +128,7 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 			mediumText.setBounds(10,20,500,300);
 			testFrame.add(mediumText);
 
-			keyboardTemplate keyboard = new keyboardTemplate();
+			KeyboardTemplate keyboard = new KeyboardTemplate();
 			keyboard.displayKeyboard(testFrame);
 		}
 
@@ -144,7 +142,7 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 			hardText.setBounds(100,100,500,300);
 			testFrame.add(hardText);
 
-			keyboardTemplate keyboard = new keyboardTemplate();
+			KeyboardTemplate keyboard = new KeyboardTemplate();
 			keyboard.displayKeyboard(testFrame);
 		}
 
