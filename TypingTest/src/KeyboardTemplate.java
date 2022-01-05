@@ -1,29 +1,57 @@
 import java.awt.Color;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
+import java.awt.event.*;
+import java.io.*;
+
+import javax.swing.*;
 
 public class KeyboardTemplate implements KeyListener{
 
 	static JButton buttons[] = new JButton[57];
 	static int codes[] = new int[57];
-	private int kcode;
 	public static JTextArea textbox = new JTextArea();
 	static JFrame f = new JFrame();
 
-	//testing sentences
-	static JLabel easyText = new JLabel("The big ugly tree destroys the beauty of the house.");
-	static JLabel mediumText = new JLabel("Once you join me, we can go visit the aquarium at the mall.");
-	static JLabel hardText = new JLabel("He thought the movie was great except for the scene with the cantaloupe.");
+	// import testing sentences
 
-	static String compareEasy = "The big ugly tree destroys the beauty of the house.";
-	static String compareMedium = "Once you join me, we can go visit the aquarium at the mall.";
-	static String compareHard = "He thought the movie was great except for the scene with the cantaloupe.";
+	static String compareEasy;
+	static String compareMedium;
+	static String compareHard;
+	
+	static JLabel easyText;// = new JLabel(compareEasy);
+	static JLabel mediumText;// = new JLabel(compareMedium);
+	static JLabel hardText;// = new JLabel(compareHard);
 
+	public void importText() {
+
+		try {
+
+			// Easy
+			String fileName = "easy.txt";
+			BufferedReader in = new BufferedReader(new FileReader(fileName));
+			compareEasy = in.readLine();
+
+			// Medium
+			fileName = "medium.txt";
+			in = new BufferedReader(new FileReader(fileName));
+			compareMedium = in.readLine();
+
+			// Hard
+			fileName = "hard.txt";
+			in = new BufferedReader(new FileReader(fileName));
+			compareHard = in.readLine();
+			
+			easyText = new JLabel(compareEasy);
+			mediumText = new JLabel(compareMedium);
+			hardText = new JLabel(compareHard);
+
+		} catch (IOException e) {
+			compareEasy = "Something went wrong";
+			compareMedium = "Something went wrong";
+			compareHard = "Something went wrong";
+			System.out.println("Error: file not found");
+		}
+	}
+	
 	//timer
 	long startTime = System.nanoTime();
 	long endTime;
@@ -31,6 +59,8 @@ public class KeyboardTemplate implements KeyListener{
 	long seconds;
 
 	public void displayKeyboard(JFrame f) {	
+		
+		//importText();
 
 		f.setTitle("Easy test");
 		f.setSize(810,600);
@@ -117,7 +147,7 @@ public class KeyboardTemplate implements KeyListener{
 		makeButton("â†’", 706, 468, 52, 52, f,56,39);
 
 		//add key listener
-		textbox.addKeyListener(new keyboardTemplate());
+		textbox.addKeyListener(new KeyboardTemplate());
 
 		f.setLayout(null);
 		f.setVisible(true);
