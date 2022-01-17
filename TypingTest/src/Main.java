@@ -1,10 +1,22 @@
-
-import java.awt.Font;
-import java.awt.event.*;
-
 import javax.swing.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.Color;
+import java.util.HashMap;
 
-public class Main extends KeyboardTemplate implements KeyListener, ActionListener{
+
+public class Main extends keyboardTemplate implements KeyListener, ActionListener{
+
+	static Font basicF = new Font("Verdana", Font.PLAIN, 12);
+
+	//title 
+	static JLabel title = new JLabel("Typing Test");
+	static Font titleFont = new Font("SansSerif", Font.BOLD, 60);
 
 	//frames
 	static JFrame startFrame = new JFrame("Start the typing test");
@@ -22,36 +34,34 @@ public class Main extends KeyboardTemplate implements KeyListener, ActionListene
 	static JButton hardBut = new JButton("HARD");
 	static JButton backBut = new JButton("BACK");
 	static JButton backButTest = new JButton("BACK");
+	static JButton doneSignBut = new JButton("SIGN UP");
+	static JButton backSignup = new JButton("BACK");
 
 	public static int whichLevel;
 
 	public static void main(String[] args) {
-		
-		Font font1 = new Font("SansSerif", Font.BOLD, 60);
+		new Main();
 
-		startFrame.setSize(810,600);
-		
-		JLabel title = new JLabel("TYPING TEST");
-		title.setBounds(200,100,500,100);
-		title.setFont(font1);
-		startFrame.add(title);
 		//start button
 		startBut.setBounds(350,225,100,50);
 		startBut.addActionListener(new Main());
 		startFrame.add(startBut);
-		
+
 		loginBut.setBounds(275,300,100,50);
 		loginBut.addActionListener(new Main());
-		startFrame.add(loginBut);		
-		
+		startFrame.add(loginBut);		 
+
 		signupBut.setBounds(425,300,100,50);
 		signupBut.addActionListener(new Main());
 		startFrame.add(signupBut);		
-		
-		loginFrame.setSize(810,600);
+
+		loginFrame.setSize(550,330);
 		loginFrame.setLayout(null);
-		
-		signupFrame.setSize(810,600);
+
+		doneSignBut.setBounds(400,210,100,30);
+		doneSignBut.setFont(basicF);
+		doneSignBut.addActionListener(new Main());
+		signupFrame.setSize(550,330);
 		signupFrame.setLayout(null);
 
 		startFrame.setLayout(null);
@@ -83,8 +93,45 @@ public class Main extends KeyboardTemplate implements KeyListener, ActionListene
 		testFrame.add(backButTest);
 
 		testFrame.setLayout(null);
+
 	}
 
+	public Main() {
+		startFrame.setSize(810,600);
+		titleAnimate(); 
+
+		title.setBounds(0,0,500,100);
+		title.setFont(titleFont);
+		
+		startFrame.add(title);
+
+		startFrame.getContentPane().validate();
+		startFrame.repaint();
+		
+		startFrame.setVisible(true);
+		startFrame.setLayout(null);
+		startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	void titleAnimate(){
+   	 int speed = 120; 
+   	  ActionListener moveText = new ActionListener() {
+   	      int count=0;
+   	      
+   	      public void actionPerformed(ActionEvent evt) {
+   	          if(count == 2) { 
+   	            ((Timer)evt.getSource()).stop();
+   	            }
+
+   	            title.setLocation((title.getLocationOnScreen().x+1),100);
+   	           count++;
+   	      }
+   	  };
+   	  
+   	  new Timer(speed, moveText).start();
+
+   }
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -92,17 +139,27 @@ public class Main extends KeyboardTemplate implements KeyListener, ActionListene
 			startFrame.setVisible(false);
 			chooseFrame.setVisible(true);
 		}	
-		
+
 		if (e.getSource() == loginBut) {
 			startFrame.setVisible(false);
 			loginFrame.setVisible(true);
 		}	
-		
+
 		if (e.getSource() == signupBut) {
 			startFrame.setVisible(false);
 			signupFrame.setVisible(true);
+			
+			Signup s = new Signup();
+			s.makeAccount(signupFrame, doneSignBut);
+		
 		}	
 		
+		if (e.getSource() == doneSignBut) {
+			signupFrame.setVisible(false);
+			startFrame.setVisible(true);
+			
+		}
+
 		if(e.getSource() == easyBut) {
 			whichLevel = 1;
 
@@ -113,7 +170,7 @@ public class Main extends KeyboardTemplate implements KeyListener, ActionListene
 			easyText.setBounds(0,0,500,300);
 			testFrame.add(easyText);
 
-			KeyboardTemplate keyboard = new KeyboardTemplate();
+			keyboardTemplate keyboard = new keyboardTemplate();
 			keyboard.displayKeyboard(testFrame);
 		}
 
@@ -128,7 +185,7 @@ public class Main extends KeyboardTemplate implements KeyListener, ActionListene
 			mediumText.setBounds(10,20,500,300);
 			testFrame.add(mediumText);
 
-			KeyboardTemplate keyboard = new KeyboardTemplate();
+			keyboardTemplate keyboard = new keyboardTemplate();
 			keyboard.displayKeyboard(testFrame);
 		}
 
@@ -142,7 +199,7 @@ public class Main extends KeyboardTemplate implements KeyListener, ActionListene
 			hardText.setBounds(100,100,500,300);
 			testFrame.add(hardText);
 
-			KeyboardTemplate keyboard = new KeyboardTemplate();
+			keyboardTemplate keyboard = new keyboardTemplate();
 			keyboard.displayKeyboard(testFrame);
 		}
 
@@ -177,3 +234,9 @@ public class Main extends KeyboardTemplate implements KeyListener, ActionListene
 
 
 }
+
+
+
+
+
+
