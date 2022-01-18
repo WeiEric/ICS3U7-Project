@@ -40,6 +40,9 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 	public static int whichLevel;
 
 	public static void main(String[] args) {
+		
+		
+		
 		new Main();
 
 		//start button
@@ -146,11 +149,11 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 		}	
 
 		if (e.getSource() == signupBut) {
-			startFrame.setVisible(false);
-			signupFrame.setVisible(true);
+			//startFrame.setVisible(false);
+			//signupFrame.setVisible(true);
 			
 			Signup s = new Signup();
-			s.makeAccount(signupFrame, doneSignBut);
+			//s.makeAccount();
 		
 		}	
 		
@@ -234,9 +237,3 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 
 
 }
-
-
-
-
-
-
