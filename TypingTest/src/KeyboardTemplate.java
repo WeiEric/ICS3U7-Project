@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.event.*;
 import java.io.*;
@@ -16,7 +17,7 @@ public class KeyboardTemplate implements KeyListener{
 	static String compareEasy;
 	static String compareMedium;
 	static String compareHard;
-	
+
 	static JLabel easyText;// = new JLabel(compareEasy);
 	static JLabel mediumText;// = new JLabel(compareMedium);
 	static JLabel hardText;// = new JLabel(compareHard);
@@ -39,7 +40,7 @@ public class KeyboardTemplate implements KeyListener{
 			fileName = "hard.txt";
 			in = new BufferedReader(new FileReader(fileName));
 			compareHard = in.readLine();
-			
+
 			easyText = new JLabel(compareEasy);
 			mediumText = new JLabel(compareMedium);
 			hardText = new JLabel(compareHard);
@@ -51,7 +52,7 @@ public class KeyboardTemplate implements KeyListener{
 			System.out.println("Error: file not found");
 		}
 	}
-	
+
 	//timer
 	long startTime = System.nanoTime();
 	long endTime;
@@ -59,7 +60,7 @@ public class KeyboardTemplate implements KeyListener{
 	long seconds;
 
 	public void displayKeyboard(JFrame f) {	
-		
+
 		//importText();
 
 		f.setTitle("Easy test");
@@ -230,6 +231,6 @@ public class KeyboardTemplate implements KeyListener{
 			}
 		}
 
-
 	}
+
 }
