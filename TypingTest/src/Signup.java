@@ -26,7 +26,7 @@ public class Signup implements ActionListener{
 		signupInfo = new HashMap<>();
 		usernameText = new JTextField("");
 		passwordText = new JPasswordField("");
-		finish = new JButton("CLose");
+		finish = new JButton("Close");
 
 		signupFrame.setSize(550,300);
 
