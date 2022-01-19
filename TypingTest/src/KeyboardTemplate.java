@@ -1,78 +1,41 @@
-
 import java.awt.Color;
-import java.awt.event.*;
-import java.io.*;
-
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.*;
 
-public class KeyboardTemplate implements KeyListener{
+public class keyboardTemplate implements KeyListener{
 
 	static JButton buttons[] = new JButton[57];
 	static int codes[] = new int[57];
+	private int kcode;
 	public static JTextArea textbox = new JTextArea();
 	static JFrame f = new JFrame();
 
-	// import testing sentences
+	//testing sentences
+	static JLabel easyText = new JLabel("The big ugly tree destroys the beauty of the house.");
+	static JLabel mediumText = new JLabel("Once you join me, we can go visit the aquarium at the mall.");
+	static JLabel hardText = new JLabel("He thought the movie was great except for the scene with the cantaloupe.");
 
-	static String compareEasy;
-	static String compareMedium;
-	static String compareHard;
-
-	static JLabel easyText;// = new JLabel(compareEasy);
-	static JLabel mediumText;// = new JLabel(compareMedium);
-	static JLabel hardText;// = new JLabel(compareHard);
-
-	public void importText() {
-
-		try {
-
-			// Easy
-			String fileName = "easy.txt";
-			BufferedReader in = new BufferedReader(new FileReader(fileName));
-			compareEasy = in.readLine();
-
-			// Medium
-			fileName = "medium.txt";
-			in = new BufferedReader(new FileReader(fileName));
-			compareMedium = in.readLine();
-
-			// Hard
-			fileName = "hard.txt";
-			in = new BufferedReader(new FileReader(fileName));
-			compareHard = in.readLine();
-
-			easyText = new JLabel(compareEasy);
-			mediumText = new JLabel(compareMedium);
-			hardText = new JLabel(compareHard);
-
-		} catch (IOException e) {
-			compareEasy = "Something went wrong";
-			compareMedium = "Something went wrong";
-			compareHard = "Something went wrong";
-			System.out.println("Error: file not found");
-		}
-	}
+	static String compareEasy = "The big ugly tree destroys the beauty of the house.";
+	static String compareMedium = "Once you join me, we can go visit the aquarium at the mall.";
+	static String compareHard = "He thought the movie was great except for the scene with the cantaloupe.";
 
 	//timer
-	long startTime = System.nanoTime();
-	long endTime;
-	long duration;
-	long seconds;
+	static long startTime;
+	static long endTime;
+	static long duration;
+	static long seconds;
 
 	public void displayKeyboard(JFrame f) {	
-
-		//importText();
 
 		f.setTitle("Easy test");
 		f.setSize(810,600);
 
 		//display instructions
-		JLabel instruct = new JLabel("Press any key to start, and enter (on your keyboard) when you're finished!") ;
-		instruct.setBounds(0,0,500,20);
-		f.add(instruct);
-		easyText.setBounds(0,50,500,20);
-		f.add(easyText);
-
+		JLabel instructions = new JLabel("Press any key to start, and enter (on your keyboard) when you're finished!") ;
+		instructions.setBounds(0,0,500,20);
+		f.add(instructions);
+		
 		//create text area for user to type in
 		textbox.setBounds(2,140,780,110);
 		f.add(textbox);
@@ -139,22 +102,22 @@ public class KeyboardTemplate implements KeyListener{
 		makeButton(",", 473, 416, 52, 52, f,49,44);
 		makeButton(".", 525, 416, 52, 52, f,50,46);
 		makeButton("?", 577, 416, 52, 52, f,51,47);
-		makeButton("â†‘", 655, 416, 52, 52, f,52,38);
+		makeButton("↑", 655, 416, 52, 52, f,52,38);
 
 		//last row
 		makeButton("", 208, 468, 312, 52, f,53,32);
-		makeButton("â†�", 604, 468, 52, 52, f,54,37);
-		makeButton("â†“", 654, 468, 52, 52, f,55,40);
-		makeButton("â†’", 706, 468, 52, 52, f,56,39);
+		makeButton("←", 604, 468, 52, 52, f,54,37);
+		makeButton("↓", 654, 468, 52, 52, f,55,40);
+		makeButton("→", 706, 468, 52, 52, f,56,39);
 
 		//add key listener
-		textbox.addKeyListener(new KeyboardTemplate());
+		textbox.addKeyListener(new keyboardTemplate());
 
 		f.setLayout(null);
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		//startTime = System.nanoTime();
+		startTime = System.nanoTime();
 
 	}
 
@@ -178,11 +141,9 @@ public class KeyboardTemplate implements KeyListener{
 			if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 				endTime = System.nanoTime();
 				duration = endTime - startTime;
-				seconds = (long) Math.round(duration / 1000000000.0);
+				seconds = (long) (duration/ 1000000000.0);
 				if(textbox.getText().trim().equals(compareEasy)) {
-					JOptionPane.showMessageDialog( f, "Correct! That took you " + seconds + " seconds");
-					startTime = 0;
-					endTime = 0;
+					JOptionPane.showMessageDialog( f, "Correct! That took you" + seconds + " seconds");
 				}
 			}
 		}
@@ -190,12 +151,9 @@ public class KeyboardTemplate implements KeyListener{
 		if(Main.whichLevel == 2) {
 			if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 				endTime = System.nanoTime();
-				duration = endTime - startTime;
-				seconds = (long) Math.round(duration / 1000000000.0);
+				seconds = (long) (duration/ 1000000000.0);
 				if(textbox.getText().trim().equals(compareMedium)) {
-					JOptionPane.showMessageDialog( f, "Correct! That took you " + seconds + " seconds");
-					startTime = 0;
-					endTime = 0;
+					JOptionPane.showMessageDialog( f, "Correct! That took you" + seconds + " seconds");
 				}
 			}
 		}
@@ -203,12 +161,9 @@ public class KeyboardTemplate implements KeyListener{
 		if(Main.whichLevel == 3) {
 			if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 				endTime = System.nanoTime();
-				duration = endTime - startTime;
-				seconds = (long) Math.round(duration / 1000000000.0);
+				seconds = (long) (duration/ 1000000000.0);
 				if(textbox.getText().trim().equals(compareHard)) {
-					JOptionPane.showMessageDialog( f, "Correct! That took you " + seconds + " seconds");
-					startTime = 0;
-					endTime = 0;
+					JOptionPane.showMessageDialog( f, "Correct! That took you" + seconds + " seconds");
 				}
 			}
 		}
@@ -231,6 +186,6 @@ public class KeyboardTemplate implements KeyListener{
 			}
 		}
 
-	}
 
+	}
 }
