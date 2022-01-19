@@ -3,7 +3,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
 
-public class keyboardTemplate implements KeyListener{
+public class KeyboardTemplate implements KeyListener{
 
 	static JButton buttons[] = new JButton[57];
 	static int codes[] = new int[57];
