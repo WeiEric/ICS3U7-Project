@@ -1,29 +1,32 @@
-import javax.swing.*;
+
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.HashMap;
 import java.io.*;
 
+import javax.swing.*;
 
 public class Signup implements ActionListener{
 
+	//static JFrame frame = new JFrame();
 	static String file = "accountInfo.txt";
 	static String line;
-	JTextField usernameText;
-	JPasswordField passwordText;
+	public JTextField usernameText;
+	public JPasswordField passwordText;
 	Font f = new Font("Verdana", Font.PLAIN, 22);
 	Font buttonf = new Font("Verdana", Font.PLAIN, 12);
-	String user, pass;
-	JButton finish;
-	HashMap<String,String> signupInfo;
+	public String user, pass;
+	JButton finish;// = new JButton();
+
+
+	public HashMap<String,String> signupInfo;
 
 	Signup() {
 		JFrame signupFrame = new JFrame();
 		signupInfo = new HashMap<>();
 		usernameText = new JTextField("");
 		passwordText = new JPasswordField("");
-		finish = new JButton("Sign up");
+		finish = new JButton("Close");
 
 		signupFrame.setSize(550,300);
 
@@ -50,6 +53,8 @@ public class Signup implements ActionListener{
 			JOptionPane.showMessageDialog(signupFrame, "Error, please restart program.");
 		}
 
+
+
 		JLabel username = new JLabel("USERNAME");
 		username.setBounds(60,50,180,60);
 		username.setFont(f);
@@ -75,34 +80,25 @@ public class Signup implements ActionListener{
 				if (e.getSource() == finish) {
 					String u = usernameText.getText();
 					String p = passwordText.getText();
-					System.out.println(signupInfo.containsKey(u));
-					
-					//check if username is already taken
-					if (signupInfo.containsKey(u) == true) {
-						JOptionPane.showMessageDialog(signupFrame, "Username taken, please retry.");
-					}
+					signupInfo.put(u,p);
 
-					else {
-						signupInfo.put(u,p);
+					//put the new account information into the text file
+					try {
+						BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
+						writer.write(u + " " + p + "\n");
 
-						//put the new account information into the text file
-						try {
-							BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
-							writer.write(u + " " + p + "\n");
+						writer.close();
+						signupFrame.dispose();
 
-							writer.close();
-							signupFrame.dispose();
+					} catch (IOException iox) {
+						JOptionPane.showMessageDialog(signupFrame, "Error, please retry.");
 
-						} catch (IOException iox) {
-							JOptionPane.showMessageDialog(signupFrame, "Error, please retry.");
-
-						}
 					}
 				}
 
+				//signupFrame.dispose();
 			}
-		}
-				);
+		});
 
 		signupFrame.add(finish);
 

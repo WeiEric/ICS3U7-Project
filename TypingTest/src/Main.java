@@ -1,16 +1,11 @@
-import javax.swing.*;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.Color;
+
+import java.awt.*;
+import java.awt.event.*;
 import java.util.HashMap;
 
+import javax.swing.*;
 
-public class Main extends keyboardTemplate implements KeyListener, ActionListener{
+public class Main extends KeyboardTemplate implements KeyListener, ActionListener{
 
 	static Font basicF = new Font("Verdana", Font.PLAIN, 12);
 
@@ -37,12 +32,8 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 	static JButton doneSignBut = new JButton("SIGN UP");
 	static JButton backSignup = new JButton("BACK");
 
-	public static int whichLevel;
-
 	public static void main(String[] args) {
-		
-		
-		
+
 		new Main();
 
 		//start button
@@ -105,36 +96,36 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 
 		title.setBounds(0,0,500,100);
 		title.setFont(titleFont);
-		
+
 		startFrame.add(title);
 
 		startFrame.getContentPane().validate();
 		startFrame.repaint();
-		
+
 		startFrame.setVisible(true);
 		startFrame.setLayout(null);
 		startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	void titleAnimate(){
-   	 int speed = 120; 
-   	  ActionListener moveText = new ActionListener() {
-   	      int count=0;
-   	      
-   	      public void actionPerformed(ActionEvent evt) {
-   	          if(count == 2) { 
-   	            ((Timer)evt.getSource()).stop();
-   	            }
+		int speed = 120; 
+		ActionListener moveText = new ActionListener() {
+			int count=0;
 
-   	            title.setLocation((title.getLocationOnScreen().x+1),100);
-   	           count++;
-   	      }
-   	  };
-   	  
-   	  new Timer(speed, moveText).start();
+			public void actionPerformed(ActionEvent evt) {
+				if(count == 2) { 
+					((Timer)evt.getSource()).stop();
+				}
 
-   }
-	
+				title.setLocation((title.getLocationOnScreen().x+1),100);
+				count++;
+			}
+		};
+
+		new Timer(speed, moveText).start();
+
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -144,19 +135,23 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 		}	
 
 		if (e.getSource() == loginBut) {
-			Login l = new Login();
+			startFrame.setVisible(false);
+			loginFrame.setVisible(true);
 		}	
 
 		if (e.getSource() == signupBut) {
-			
+			//startFrame.setVisible(false);
+			//signupFrame.setVisible(true);
+
 			Signup s = new Signup();
-		
+			//s.makeAccount();
+
 		}	
-		
+
 		if (e.getSource() == doneSignBut) {
 			signupFrame.setVisible(false);
 			startFrame.setVisible(true);
-			
+
 		}
 
 		if(e.getSource() == easyBut) {
@@ -169,7 +164,7 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 			easyText.setBounds(0,0,500,300);
 			testFrame.add(easyText);
 
-			keyboardTemplate keyboard = new keyboardTemplate();
+			KeyboardTemplate keyboard = new KeyboardTemplate();
 			keyboard.displayKeyboard(testFrame);
 		}
 
@@ -184,7 +179,7 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 			mediumText.setBounds(10,20,500,300);
 			testFrame.add(mediumText);
 
-			keyboardTemplate keyboard = new keyboardTemplate();
+			KeyboardTemplate keyboard = new KeyboardTemplate();
 			keyboard.displayKeyboard(testFrame);
 		}
 
@@ -198,7 +193,7 @@ public class Main extends keyboardTemplate implements KeyListener, ActionListene
 			hardText.setBounds(100,100,500,300);
 			testFrame.add(hardText);
 
-			keyboardTemplate keyboard = new keyboardTemplate();
+			KeyboardTemplate keyboard = new KeyboardTemplate();
 			keyboard.displayKeyboard(testFrame);
 		}
 

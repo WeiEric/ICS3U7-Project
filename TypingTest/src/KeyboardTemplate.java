@@ -1,9 +1,10 @@
+
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
 
-public class KeyboardTemplate implements KeyListener{
+public class KeyboardTemplate extends Play implements KeyListener{
 
 	static JButton buttons[] = new JButton[57];
 	static int codes[] = new int[57];
@@ -11,31 +12,36 @@ public class KeyboardTemplate implements KeyListener{
 	public static JTextArea textbox = new JTextArea();
 	static JFrame f = new JFrame();
 
-	//testing sentences
-	static JLabel easyText = new JLabel("The big ugly tree destroys the beauty of the house.");
-	static JLabel mediumText = new JLabel("Once you join me, we can go visit the aquarium at the mall.");
-	static JLabel hardText = new JLabel("He thought the movie was great except for the scene with the cantaloupe.");
+	public void makeButton(String n, int x, int y, int w, int h, JFrame f, int buttonNum, int kcode) {
+		JButton buttonName = new JButton(n);
+		buttonName.setBounds(x,y,w,h);
+		buttons[buttonNum] = buttonName;
+		codes[buttonNum] = kcode;
+		f.add(buttonName);
 
-	static String compareEasy = "The big ugly tree destroys the beauty of the house.";
-	static String compareMedium = "Once you join me, we can go visit the aquarium at the mall.";
-	static String compareHard = "He thought the movie was great except for the scene with the cantaloupe.";
-
-	//timer
-	static long startTime;
-	static long endTime;
-	static long duration;
-	static long seconds;
+	}
 
 	public void displayKeyboard(JFrame f) {	
+		//importText(easyText, mediumText, hardText, compareEasy, compareMedium, compareHard);
 
-		f.setTitle("Easy test");
+		// set title
+		if (whichLevel == 1) {
+			f.setTitle("Easy test");
+		} else if (whichLevel == 2) {
+			f.setTitle("Medium test");
+		} else if (whichLevel == 3) {
+			f.setTitle("Hard test");
+		} else {
+			f.setTitle("Custom test");
+		}
+
 		f.setSize(810,600);
 
 		//display instructions
 		JLabel instructions = new JLabel("Press any key to start, and enter (on your keyboard) when you're finished!") ;
 		instructions.setBounds(0,0,500,20);
 		f.add(instructions);
-		
+
 		//create text area for user to type in
 		textbox.setBounds(2,140,780,110);
 		f.add(textbox);
@@ -120,20 +126,9 @@ public class KeyboardTemplate implements KeyListener{
 		startTime = System.nanoTime();
 
 	}
-
-	public void makeButton(String n, int x, int y, int w, int h, JFrame f, int buttonNum, int kcode) {
-		JButton buttonName = new JButton(n);
-		buttonName.setBounds(x,y,w,h);
-		buttons[buttonNum] = buttonName;
-		codes[buttonNum] = kcode;
-		f.add(buttonName);
-
-	}
-
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
 
