@@ -111,7 +111,7 @@ public class KeyboardTemplate implements KeyListener{
 		makeButton("→", 706, 468, 52, 52, f,56,39);
 
 		//add key listener
-		textbox.addKeyListener(new keyboardTemplate());
+		textbox.addKeyListener(new KeyboardTemplate());
 
 		f.setLayout(null);
 		f.setVisible(true);
