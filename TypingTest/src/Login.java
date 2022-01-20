@@ -1,11 +1,9 @@
-
+import javax.swing.*;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.io.*;
-
-import javax.swing.*;
 
 public class Login implements ActionListener{
 
@@ -74,14 +72,21 @@ public class Login implements ActionListener{
 				if (e.getSource() == done) {
 					String u = usernameText.getText();
 					String p = passwordText.getText();
-
+			
 					//check if the username exists 
 					if(loginInfo.containsKey(u)) {
 						if((loginInfo.get(u).equals(p))) { //check if password is equal to the id
 							JOptionPane.showMessageDialog(loginFrame, "Login successful!");
+							loginFrame.dispose();
+						}
+						else {
+							JOptionPane.showMessageDialog(loginFrame, "Login unsuccessful.");
 						}
 					}
-					loginFrame.dispose();
+					
+					else {
+						JOptionPane.showMessageDialog(loginFrame, "Login unsuccessful.");
+					}
 
 				}
 
@@ -104,3 +109,4 @@ public class Login implements ActionListener{
 	}
 
 }
+
