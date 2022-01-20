@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.*;
 
 public class KeyboardTemplate extends Play implements KeyListener{
@@ -140,7 +141,9 @@ public class KeyboardTemplate extends Play implements KeyListener{
 				if(textbox.getText().trim().equals(compareEasy)) {
 					JOptionPane.showMessageDialog( f, "Correct! That took you" + seconds + " seconds");
 				}
+
 			}
+
 		}
 
 		if(Main.whichLevel == 2) {
@@ -150,7 +153,9 @@ public class KeyboardTemplate extends Play implements KeyListener{
 				if(textbox.getText().trim().equals(compareMedium)) {
 					JOptionPane.showMessageDialog( f, "Correct! That took you" + seconds + " seconds");
 				}
+
 			}
+
 		}
 
 		if(Main.whichLevel == 3) {
@@ -160,7 +165,9 @@ public class KeyboardTemplate extends Play implements KeyListener{
 				if(textbox.getText().trim().equals(compareHard)) {
 					JOptionPane.showMessageDialog( f, "Correct! That took you" + seconds + " seconds");
 				}
+
 			}
+
 		}
 
 
@@ -169,7 +176,9 @@ public class KeyboardTemplate extends Play implements KeyListener{
 			if (codes[i] == e.getKeyCode()) {
 				buttons[i].setBackground(Color.decode("#99b3ff"));
 			}
+
 		}
+
 	}
 
 
@@ -179,8 +188,9 @@ public class KeyboardTemplate extends Play implements KeyListener{
 			if (codes[i] == e.getKeyCode()) {
 				buttons[i].setBackground(null);
 			}
+
 		}
 
-
 	}
+
 }

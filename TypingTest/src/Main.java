@@ -226,5 +226,4 @@ public class Main extends KeyboardTemplate implements KeyListener, ActionListene
 
 	}
 
-
 }

@@ -1,37 +1,28 @@
 
-
 import java.io.*;
 
-import javax.swing.JLabel;
+import javax.swing.*;
 
 public class Play {
 
 	// level selector
 	public static int whichLevel;
-
-
-
 	/*	
 	// import sentences
 	public void importText(JLabel easyText, JLabel mediumText, JLabel hardText, String compareEasy, String compareMedium, String compareHard) {
 		try {
-
 			// Easy
 			String fileName = "easy.txt";
 			BufferedReader in = new BufferedReader(new FileReader(fileName));
 			compareEasy = in.readLine();
-
 			// Medium
 			fileName = "medium.txt";
 			in = new BufferedReader(new FileReader(fileName));
 			compareMedium = in.readLine();
-
 			// Hard
 			fileName = "hard.txt";
 			in = new BufferedReader(new FileReader(fileName));
 			compareHard = in.readLine();
-
-
 			easyText = new JLabel(compareEasy);
 			mediumText = new JLabel(compareMedium);
 			hardText = new JLabel(compareHard);
@@ -43,7 +34,6 @@ public class Play {
 		}
 	}
 	 */
-
 	// testing sentences
 	static JLabel easyText = new JLabel("The big ugly tree destroys the beauty of the house.");
 	static JLabel mediumText = new JLabel("Once you join me, we can go visit the aquarium at the mall.");
@@ -60,6 +50,5 @@ public class Play {
 	static long endTime;
 	static long duration;
 	static long seconds;
-
 
 }
