@@ -1,59 +1,53 @@
-
+import javax.swing.*;
 import java.awt.Font;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.io.*;
 
-import javax.swing.*;
 
 public class Signup implements ActionListener{
 
-	//static JFrame frame = new JFrame();
 	static String file = "accountInfo.txt";
 	static String line;
-	public JTextField usernameText;
-	public JPasswordField passwordText;
+	JTextField usernameText;
+	JPasswordField passwordText;
 	Font f = new Font("Verdana", Font.PLAIN, 22);
 	Font buttonf = new Font("Verdana", Font.PLAIN, 12);
-	public String user, pass;
-	JButton finish;// = new JButton();
-
-
-	public HashMap<String,String> signupInfo;
+	String user, pass;
+	JButton finish;
+	HashMap<String,String> signupInfo;
 
 	Signup() {
 		JFrame signupFrame = new JFrame();
 		signupInfo = new HashMap<>();
 		usernameText = new JTextField("");
 		passwordText = new JPasswordField("");
-		finish = new JButton("Close");
+		finish = new JButton("Sign up");
 
 		signupFrame.setSize(550,300);
 
 		//store all the info from the text file into the hashmap
+
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
-			int numLines = 0;
-			String readUser = "";
-			String readPass = "";
+			String username = "";
+			String password = "";
+			String splitInfo[];
 			while ((line = reader.readLine()) != null) {
-				numLines++;
-				if(numLines == 1) {
-					readUser = line;
-				}
-				else {
-					readPass = line;
-				}
+				//seperate the username and password from textfile
+				//put information into hashmap
+				splitInfo = line.split(" ");
+				username = splitInfo[0];
+				password = splitInfo[1];
+				signupInfo.put(username, password);
 
-				signupInfo.put(readUser, readPass);
-				numLines = 0;
 			}
+
 
 		} catch (Exception IOX) {
 			JOptionPane.showMessageDialog(signupFrame, "Error, please restart program.");
 		}
-
-
 
 		JLabel username = new JLabel("USERNAME");
 		username.setBounds(60,50,180,60);
@@ -80,25 +74,33 @@ public class Signup implements ActionListener{
 				if (e.getSource() == finish) {
 					String u = usernameText.getText();
 					String p = passwordText.getText();
-					signupInfo.put(u,p);
 
-					//put the new account information into the text file
-					try {
-						BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
-						writer.write(u + " " + p + "\n");
+					//check if username is already taken
+					if (signupInfo.containsKey(u) == true) {
+						JOptionPane.showMessageDialog(signupFrame, "Username taken, please retry.");
+					}
 
-						writer.close();
-						signupFrame.dispose();
+					else {
+						signupInfo.put(u,p);
 
-					} catch (IOException iox) {
-						JOptionPane.showMessageDialog(signupFrame, "Error, please retry.");
+						//put the new account information into the text file
+						try {
+							BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
+							writer.write(u + " " + p + "\n");
 
+							writer.close();
+							signupFrame.dispose();
+
+						} catch (IOException iox) {
+							JOptionPane.showMessageDialog(signupFrame, "Error, please retry.");
+
+						}
 					}
 				}
 
-				//signupFrame.dispose();
 			}
-		});
+		}
+				);
 
 		signupFrame.add(finish);
 
