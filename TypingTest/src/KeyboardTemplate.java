@@ -4,6 +4,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
 
+/**
+ * Class KeyboardTemplate, child of Play, implements KeyListener
+ * Provides a template for a full QWERTY keyboard as well as game logic that isn't present in its parent class Play, such as the stopping of the timer when the enter key is pressed.
+ * @author [ insert author here ]
+ *
+ */
 public class KeyboardTemplate extends Play implements KeyListener {
 
 	static JButton buttons[] = new JButton[57];
@@ -23,10 +29,24 @@ public class KeyboardTemplate extends Play implements KeyListener {
 	*/
 	//timer
 	static long startTime;
-
+	
+	/**
+	 * Creates a full QWERTY keyboard in frame f, as well as starts the timer
+	 * @param f target frame where a keyboard is needed
+	 */
 	public void displayKeyboard(JFrame f) {	
+		
+		if (whichLevel == 1) {
+			f.setTitle("Easy test");
+		} else if (whichLevel == 2) {
+			f.setTitle("Medium test");
+		} else if (whichLevel == 3) {
+			f.setTitle("Hard test");
+		} else {
+			f.setTitle("Custom test");
+		}
 
-		f.setTitle("Easy test");
+		
 		f.setSize(810,600);
 
 		//display instructions
@@ -100,13 +120,13 @@ public class KeyboardTemplate extends Play implements KeyListener {
 		makeButton(",", 473, 416, 52, 52, f,49,44);
 		makeButton(".", 525, 416, 52, 52, f,50,46);
 		makeButton("?", 577, 416, 52, 52, f,51,47);
-		makeButton("↑", 655, 416, 52, 52, f,52,38);
+		makeButton("â†‘", 655, 416, 52, 52, f,52,38);
 
 		//last row
 		makeButton("", 208, 468, 312, 52, f,53,32);
-		makeButton("←", 604, 468, 52, 52, f,54,37);
-		makeButton("↓", 654, 468, 52, 52, f,55,40);
-		makeButton("→", 706, 468, 52, 52, f,56,39);
+		makeButton("â†�", 604, 468, 52, 52, f,54,37);
+		makeButton("â†“", 654, 468, 52, 52, f,55,40);
+		makeButton("â†’", 706, 468, 52, 52, f,56,39);
 
 		//add key listener
 		textbox.addKeyListener(new KeyboardTemplate());
@@ -118,7 +138,18 @@ public class KeyboardTemplate extends Play implements KeyListener {
 		startTime = System.nanoTime();
 
 	}
-
+	
+	/**
+	 * Makes button with given parameters
+	 * @param n Name of button
+	 * @param x X position of button
+	 * @param y Y position of button
+	 * @param w width of button
+	 * @param h height of button
+	 * @param f target frame where buttons will exist in
+	 * @param buttonNum button ID number
+	 * @param kcode button keyboard code
+	 */
 	public void makeButton(String n, int x, int y, int w, int h, JFrame f, int buttonNum, int kcode) {
 		JButton buttonName = new JButton(n);
 		buttonName.setBounds(x,y,w,h);
