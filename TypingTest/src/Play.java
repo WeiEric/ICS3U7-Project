@@ -42,13 +42,11 @@ public class Play {
 	static String compareEasy = "The big ugly tree destroys the beauty of the house.";
 	static String compareMedium = "Once you join me, we can go visit the aquarium at the mall.";
 	static String compareHard = "He thought the movie was great except for the scene with the cantaloupe.";
-
-
-
+	/*
 	// timer
 	static long startTime;
 	static long endTime;
 	static long duration;
 	static long seconds;
-
+	*/
 }
