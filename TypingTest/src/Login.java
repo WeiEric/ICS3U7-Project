@@ -11,7 +11,7 @@ import javax.swing.*;
  * Class Login, implements ActionListener
  * Logs user in based on information from accountInfo.txt
  * If username and password match one in accountInfo document, user is logged in
- * @author 345396568
+ * @author [ insert author here ]
  *
  */
 public class Login implements ActionListener{
