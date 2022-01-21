@@ -3,6 +3,12 @@ import java.io.*;
 
 import javax.swing.*;
 
+/**
+ * Class Play
+ * Gets testing sentences, as well as creates the level selector
+ * @author [ insert author here ]
+ *
+ */
 public class Play {
 
 	// level selector
@@ -48,5 +54,5 @@ public class Play {
 	static long endTime;
 	static long duration;
 	static long seconds;
-	*/
+	 */
 }
