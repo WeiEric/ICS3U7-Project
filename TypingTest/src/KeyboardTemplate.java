@@ -1,9 +1,10 @@
+
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
 
-public class KeyboardTemplate extends Play implements KeyListener{
+public class KeyboardTemplate extends Play implements KeyListener {
 
 	static JButton buttons[] = new JButton[57];
 	static int codes[] = new int[57];
@@ -190,7 +191,5 @@ public class KeyboardTemplate extends Play implements KeyListener{
 				buttons[i].setBackground(null);
 			}
 		}
-
-
 	}
 }
