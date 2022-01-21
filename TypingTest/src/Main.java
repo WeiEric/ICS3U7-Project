@@ -5,6 +5,12 @@ import java.util.HashMap;
 
 import javax.swing.*;
 
+/**
+ * Class Main, child of KeyboardTemplate, implements KeyListener and ActionListener
+ * Main class of the program, and creates the starting GUI elements of the game.
+ * @author [ insert author here ]
+ *
+ */
 public class Main extends KeyboardTemplate implements KeyListener, ActionListener{
 
 	static Font basicF = new Font("Verdana", Font.PLAIN, 12);
@@ -32,6 +38,10 @@ public class Main extends KeyboardTemplate implements KeyListener, ActionListene
 	static JButton doneSignBut = new JButton("SIGN UP");
 	static JButton backSignup = new JButton("BACK");
 
+	/**
+	 * The main method
+	 * @param args String array arguments
+	 */
 	public static void main(String[] args) {
 
 		new Main();
@@ -90,6 +100,10 @@ public class Main extends KeyboardTemplate implements KeyListener, ActionListene
 
 	}
 
+	/**
+	 * Main constructor
+	 * sets the parameters of the home page, and animates the title
+	 */
 	public Main() {
 		startFrame.setSize(810,600);
 		titleAnimate(); 
@@ -107,6 +121,9 @@ public class Main extends KeyboardTemplate implements KeyListener, ActionListene
 		startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	/**
+	 * animates title
+	 */
 	void titleAnimate(){
 		int speed = 120; 
 		ActionListener moveText = new ActionListener() {
