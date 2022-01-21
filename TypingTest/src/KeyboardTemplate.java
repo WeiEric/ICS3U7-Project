@@ -11,7 +11,7 @@ public class KeyboardTemplate extends Play implements KeyListener {
 	private int kcode;
 	public static JTextArea textbox = new JTextArea();
 	static JFrame f = new JFrame();
-
+	/*
 	//testing sentences
 	static JLabel easyText = new JLabel("The big ugly tree destroys the beauty of the house.");
 	static JLabel mediumText = new JLabel("Once you join me, we can go visit the aquarium at the mall.");
@@ -20,7 +20,7 @@ public class KeyboardTemplate extends Play implements KeyListener {
 	static String compareEasy = "The big ugly tree destroys the beauty of the house.";
 	static String compareMedium = "Once you join me, we can go visit the aquarium at the mall.";
 	static String compareHard = "He thought the movie was great except for the scene with the cantaloupe.";
-
+	*/
 	//timer
 	static long startTime;
 
