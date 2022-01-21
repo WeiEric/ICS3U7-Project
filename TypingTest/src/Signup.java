@@ -7,6 +7,12 @@ import java.io.*;
 
 import javax.swing.*;
 
+/**
+ * Class Signup, implements ActionListener
+ * Creates account info from user input and writes account info into accountInfo.txt
+ * @author [ insert author here ]
+ *
+ */
 public class Signup implements ActionListener{
 
 	static String file = "accountInfo.txt";
@@ -19,6 +25,10 @@ public class Signup implements ActionListener{
 	JButton finish;
 	HashMap<String,String> signupInfo;
 
+	/**
+	 * Signup constructor
+	 * Creates the signup page GUI and writes username and password into text file
+	 */
 	Signup() {
 		JFrame signupFrame = new JFrame();
 		signupInfo = new HashMap<>();
@@ -70,6 +80,9 @@ public class Signup implements ActionListener{
 		finish.setFont(buttonf);
 		finish.addActionListener(new ActionListener() {
 
+			/**
+			 * writes info into text document when finish button is pressec
+			 */
 			public void actionPerformed(ActionEvent e)
 			{
 				if (e.getSource() == finish) {
