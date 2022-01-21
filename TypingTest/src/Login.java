@@ -7,6 +7,13 @@ import java.util.HashMap;
 
 import javax.swing.*;
 
+/**
+ * Class Login, implements ActionListener
+ * Logs user in based on information from accountInfo.txt
+ * If username and password match one in accountInfo document, user is logged in
+ * @author 345396568
+ *
+ */
 public class Login implements ActionListener{
 
 	static String file = "accountInfo.txt";
@@ -19,7 +26,10 @@ public class Login implements ActionListener{
 	JButton done;
 	public HashMap<String,String> loginInfo;
 
-
+	/**
+	 * Login constructor
+	 * Creates login page GUI and reads information from document
+	 */
 	Login() {
 		JFrame loginFrame = new JFrame();
 		loginInfo = new HashMap<>();
@@ -69,6 +79,9 @@ public class Login implements ActionListener{
 		done.setFont(buttonf);
 		done.addActionListener(new ActionListener() {
 
+			/**
+			 * Checks if username and matching password entered by the user equals any username and password pair in accountInfo.txt
+			 */
 			public void actionPerformed(ActionEvent e)
 			{
 				if (e.getSource() == done) {
