@@ -26,16 +26,16 @@ public class KeyboardTemplate extends Play implements KeyListener {
 	static String compareEasy = "The big ugly tree destroys the beauty of the house.";
 	static String compareMedium = "Once you join me, we can go visit the aquarium at the mall.";
 	static String compareHard = "He thought the movie was great except for the scene with the cantaloupe.";
-	*/
+	 */
 	//timer
 	static long startTime;
-	
+
 	/**
 	 * Creates a full QWERTY keyboard in frame f, as well as starts the timer
 	 * @param f target frame where a keyboard is needed
 	 */
 	public void displayKeyboard(JFrame f) {	
-		
+
 		if (whichLevel == 1) {
 			f.setTitle("Easy test");
 		} else if (whichLevel == 2) {
@@ -46,7 +46,7 @@ public class KeyboardTemplate extends Play implements KeyListener {
 			f.setTitle("Custom test");
 		}
 
-		
+
 		f.setSize(810,600);
 
 		//display instructions
@@ -138,7 +138,7 @@ public class KeyboardTemplate extends Play implements KeyListener {
 		startTime = System.nanoTime();
 
 	}
-	
+
 	/**
 	 * Makes button with given parameters
 	 * @param n Name of button
