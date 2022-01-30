@@ -5,6 +5,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Class KeyboardTemplate, child of Play, implements KeyListener
@@ -12,33 +14,42 @@ import javax.swing.*;
  * @author [ insert author here ]
  *
  */
-public class KeyboardTemplate extends Play implements KeyListener, ActionListener{
+public class KeyboardTemplate implements KeyListener, ActionListener{
 
 	static JButton buttons[] = new JButton[57];
 	static int codes[] = new int[57];
 	private int kcode;
-	  JTextArea textbox = new JTextArea();	
+	JTextArea textbox = new JTextArea();	
+	JTextArea exampleText = new JTextArea();
 
 	//fonts
-	 Font instrucFont = new Font("Verdana", Font.BOLD+Font.ITALIC, 16);
-	 Font backFont = new Font("Verdana", Font.BOLD+Font.ITALIC, 16);
-	 Font labelFont = new Font("Verdana", Font.BOLD+Font.ITALIC, 23);
-
-	//check to make sure stopwatch only starts once
-	static boolean startWatch = true;
+	Font instrucFont = new Font("Verdana", Font.BOLD+Font.ITALIC, 16);
+	Font backFont = new Font("Verdana", Font.BOLD+Font.ITALIC, 16);
+	Font labelFont = new Font("Verdana", Font.BOLD+Font.ITALIC, 15);
+	Font textboxFont = new Font("Verdana", Font.PLAIN, 15);
+	Font timerFont = new Font("Verdana", Font.PLAIN, 30);
 
 	// testing sentences
-	static JLabel easyText = new JLabel("The big ugly tree destroys the beauty of the house.");
-	static JLabel mediumText = new JLabel("Once you join me, we can go visit the aquarium at the mall.");
-	static JLabel hardText = new JLabel("He thought the movie was great except for the scene with the cantaloupe.");
+	String easyShow = "The basic technique stands in contrast to hunt and peck typing in which the typist keeps his or her eyes\n on the source copy at all times. Touch typing also involves the use of the home row method,"
+			+ " where \n typists keep their wrists up, rather than resting them on a desk or keyboard (which can cause carpal \n tunnel syndrome).";
+	String mediumShow = " Self-confidence is a tricky subject for many people. For some, it's impossible to feel good about \n  themselves without outside validation. When you're in a situation where the people in your "
+			+ "life \n  aren't helping you to feel better about yourself, this can become a problem in your day to day life.";
+	String hardShow = "During the 1970s, companies experienced rapid technological change which caused the major companies to \n enhance their strategic planning and focus on ways to organizational effectiveness. This "
+			+ "resulted \n in developing more jobs and opportunities for people to show their skills which were directed to \n effective applying employees toward the fulfillment.";
 
-	static String compareEasy = "The big ugly tree destroys the beauty of the house.";
-	static String compareMedium = "Once you join me, we can go visit the aquarium at the mall.";
-	static String compareHard = "He thought the movie was great except for the scene with the cantaloupe.";
+	String compareEasy = "The basic technique stands in contrast to hunt and peck typing in which the typist keeps his or her eyes on the source copy at all times. Touch typing also involves the use of the home row method, where "
+			+ "typists keep their wrists up, rather than resting them on a desk or keyboard (which can cause carpal tunnel syndrome).";
+	String compareMedium = "Self-confidence is a tricky subject for many people. For some, it's impossible to feel good about themselves without outside validation. When you're in a situation where the people in your "
+			+ "life aren't helping you to feel better about yourself, this can become a problem in your day to day life.";
+	String compareHard = "During the 1970s, companies experienced rapid technological change which caused the major companies to enhance their strategic planning and focus on ways to organizational effectiveness. This "
+			+ "resulted in developing more jobs and opportunities for people to show their skills which were directed to effective applying employees toward the fulfillment.";
+
 
 	static long startTime;
-	Timer timer;
 
+	//stopwatch 
+	Timer timer;
+	static boolean startWatch = true;
 	JLabel timerDisplay = new JLabel();
 
 	static int totalTime = 0;
@@ -50,10 +61,12 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 	String minDisplay = String.format("%02d", minutes);
 	String hourDisplay = String.format("%02d", hours);
 
+
 	/**
 	 * Creates a full QWERTY keyboard in frame f, as well as starts the timer
 	 * @param f target frame where a keyboard is needed
 	 */
+
 	KeyboardTemplate() {	
 
 		JFrame f = new JFrame();
@@ -64,15 +77,28 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 		JButton backBut = new JButton("BACK");
 		if (Main.whichLevel == 1) {
 			f.setTitle("Easy test");
-			easyText.setSize(500,200);
-			easyText.setLocation(10,10);
-			easyText.setFont(labelFont);
-			f.add(easyText);
+			exampleText.setBounds(5,66,780,80);
+			exampleText.setText(easyShow);
+			exampleText.setFont(textboxFont);
+			exampleText.setBackground(Color.decode("#b7b7a4"));
+			f.add(exampleText);
 
 		} else if (Main.whichLevel == 2) {
 			f.setTitle("Medium test");
+			exampleText.setBounds(5,66,780,80);
+			exampleText.setText(mediumShow);
+			exampleText.setFont(textboxFont);
+			exampleText.setBackground(Color.decode("#b7b7a4"));
+			f.add(exampleText);
+
 		} else if (Main.whichLevel == 3) {
 			f.setTitle("Hard test");
+			exampleText.setBounds(5,66,780,80);
+			exampleText.setText(hardShow);
+			exampleText.setFont(textboxFont);
+			exampleText.setBackground(Color.decode("#b7b7a4"));
+			f.add(exampleText);
+
 		} else {
 			f.setTitle("Custom test");
 		}
@@ -104,7 +130,9 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 		//f.add(instructions2);
 
 		//create text area for user to type in
-		textbox.setBounds(8,140,780,110);
+		textbox.setBounds(5,150,780,106);
+		textbox.setFont(textboxFont);
+		textbox.setLineWrap(true);
 		f.add(textbox);
 
 		//display keyboard
@@ -176,8 +204,9 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 		makeButton("→", 706, 468, 52, 52, f,56,39);
 
 		timerDisplay.setText(hourDisplay + ":" + minDisplay + ":" + secDisplay);
-		timerDisplay.setSize(300,200);
-		timerDisplay.setLocation(0,0);
+
+		timerDisplay.setBounds(60,6,300,60);
+		timerDisplay.setFont(timerFont);
 		f.add(timerDisplay);
 
 		timer = new Timer(1000, new ActionListener() {
@@ -187,7 +216,7 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 				hours = (totalTime / 3600000);
 				minutes = (totalTime / 60000) % 60;
 				seconds = (totalTime / 1000) % 60;
-				
+
 				secDisplay = String.format("%02d", seconds);
 				minDisplay = String.format("%02d", minutes);
 				hourDisplay = String.format("%02d", hours);
@@ -195,31 +224,24 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 
 			}});
 
-		//f.add(timerDisplay);
-
-
 		//add key listener
 		textbox.addKeyListener(new KeyListener() {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
-
-			}
+			}			
 
 			@Override
 			public void keyPressed(KeyEvent e) {				
 
+				//check which level is entered
 				if(Main.whichLevel == 1) {
-					if (startWatch == true) {
-						
+					if (startWatch == true) { //make sure timer only starts once
 						start();
 						startWatch = false;		
-						System.out.println(timer.isRunning());
-						
-
 					}
 
-					if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					if(e.getKeyCode() == KeyEvent.VK_ENTER) { //check if enter is pressed and display corresponding information
 						long endTime = System.nanoTime();
 						long duration = endTime - startTime;
 						long seconds = (long) (duration/ 1000000000.0);
@@ -236,7 +258,6 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 
 				if(Main.whichLevel == 2) {
 					if (startWatch == true) {
-						reset();
 						start();
 						startWatch = false;
 					}
@@ -251,7 +272,8 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 						textbox.setText("");
 
 						startWatch = true;
-
+						stop();
+						reset();
 						f.dispose();
 
 					}
@@ -260,7 +282,6 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 				if(Main.whichLevel == 3) {
 
 					if (startWatch == true) {
-						reset();
 						start();
 						startWatch = false;
 					}
@@ -274,6 +295,8 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 						}
 						textbox.setText("");
 						startWatch = true;
+						stop();
+						reset();
 						f.dispose();
 					}
 				}
@@ -287,6 +310,7 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 				}
 			}
 
+			//change back colour once released
 			@Override
 			public void keyReleased(KeyEvent e) {
 				for (int i = 0; i < 57; i++) {
@@ -302,6 +326,8 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 
 		});
 
+		f.setFocusable(true);
+		f.revalidate();
 		f.setLayout(null);
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -334,6 +360,7 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 
 	}
 
+	//timer methods
 	void start() {
 		timer.start();
 	}
@@ -344,17 +371,15 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 
 
 	void reset() {
-		System.out.println("Reset");
 		totalTime = 0;
 		seconds = 0;
 		minutes = 0;
-		hours= 0;
-
+		hours = 0;
 	}
+
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -377,3 +402,4 @@ public class KeyboardTemplate extends Play implements KeyListener, ActionListene
 
 
 }
+
