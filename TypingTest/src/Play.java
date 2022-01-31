@@ -33,8 +33,6 @@ public class Play implements KeyListener, ActionListener{
 	String hardText = Import.getText("hard.txt");
 	String customText = Import.getText("custom.txt");
 
-	static long startTime;
-
 	//stopwatch 
 	Timer timer;
 	static boolean startWatch = true;
@@ -226,7 +224,9 @@ public class Play implements KeyListener, ActionListener{
 				hourDisplay = String.format("%02d", hours);
 				timerDisplay.setText(hourDisplay + ":" + minDisplay + ":" + secDisplay);
 
-			}});
+			}
+		}
+				);
 
 		//add key listener
 		textbox.addKeyListener(new KeyListener() {
@@ -246,11 +246,10 @@ public class Play implements KeyListener, ActionListener{
 					}
 
 					if (e.getKeyCode() == KeyEvent.VK_ENTER) { //check if enter is pressed and display corresponding information
-						long endTime = System.nanoTime();
-						long duration = endTime - startTime;
-						long seconds = (long) (duration/ 1000000000.0);
 						if(textbox.getText().trim().equals(easyText)) {
-							JOptionPane.showMessageDialog( f, "Correct! That took you " + seconds + " seconds");
+							JOptionPane.showMessageDialog( f, "Correct! That took you " + ((hours * 3600) + (minutes * 60) + seconds) + " seconds");
+						} else {
+							JOptionPane.showMessageDialog( f, "Seems like you made a mistake, try harder next time!");
 						}
 						textbox.setText("");
 						startWatch = true;
@@ -267,14 +266,12 @@ public class Play implements KeyListener, ActionListener{
 					}
 
 					if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-						long endTime = System.nanoTime();
-						long duration = endTime - startTime;
-						long seconds = (long) (duration/ 1000000000.0);
 						if(textbox.getText().trim().equals(mediumText)) {
-							JOptionPane.showMessageDialog( f, "Correct! That took you " + seconds + " seconds");
+							JOptionPane.showMessageDialog( f, "Correct! That took you " + ((hours * 3600) + (minutes * 60) + seconds) + " seconds");
+						} else {
+							JOptionPane.showMessageDialog( f, "Seems like you made a mistake, try harder next time!");
 						}
 						textbox.setText("");
-
 						startWatch = true;
 						stop();
 						reset();
@@ -291,11 +288,10 @@ public class Play implements KeyListener, ActionListener{
 					}
 
 					if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-						long endTime = System.nanoTime();
-						long duration = endTime - startTime;
-						long seconds = (long) (duration/ 1000000000.0);
 						if(textbox.getText().trim().equals(hardText)) {
-							JOptionPane.showMessageDialog( f, "Correct! That took you " + seconds + " seconds");
+							JOptionPane.showMessageDialog( f, "Correct! That took you " + ((hours * 3600) + (minutes * 60) + seconds) + " seconds");
+						} else {
+							JOptionPane.showMessageDialog( f, "Seems like you made a mistake, try harder next time!");
 						}
 						textbox.setText("");
 						startWatch = true;
@@ -312,11 +308,10 @@ public class Play implements KeyListener, ActionListener{
 					}
 
 					if (e.getKeyCode() == KeyEvent.VK_ENTER) { //check if enter is pressed and display corresponding information
-						long endTime = System.nanoTime();
-						long duration = endTime - startTime;
-						long seconds = (long) (duration/ 1000000000.0);
 						if(textbox.getText().trim().equals(customText)) {
-							JOptionPane.showMessageDialog( f, "Correct! That took you " + seconds + " seconds");
+							JOptionPane.showMessageDialog( f, "Correct! That took you " + ((hours * 3600) + (minutes * 60) + seconds) + " seconds");
+						} else {
+							JOptionPane.showMessageDialog( f, "Seems like you made a mistake, try harder next time!");
 						}
 						textbox.setText("");
 						startWatch = true;
@@ -355,8 +350,6 @@ public class Play implements KeyListener, ActionListener{
 		f.setLayout(null);
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		startTime = System.nanoTime();
 
 	}
 
