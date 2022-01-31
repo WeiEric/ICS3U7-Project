@@ -1,0 +1,1 @@
+Go to TypingTest > custom.txt and paste text into the first line of the plain text document to test yourself against text chosen by you!

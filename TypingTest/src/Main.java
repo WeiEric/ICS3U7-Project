@@ -1,12 +1,15 @@
-import javax.swing.*;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.Color;
-import javax.swing.BorderFactory;
 
+import java.awt.Font;
+import java.awt.event.*;
+import java.awt.Color;
+import javax.swing.*;
+
+/**
+ * Class Main
+ * Sets all the starting frame properties and contains menu and level selector
+ * @author author
+ *
+ */
 public class Main implements KeyListener, ActionListener{
 
 
@@ -57,7 +60,7 @@ public class Main implements KeyListener, ActionListener{
 
 		title.setBounds(228,88,500,100);
 		startFrame.add(title);
-		
+
 		titleShadow.setBounds(235, 92, 500,100);
 		titleShadow.setFont(titleFont);
 		titleShadow.setForeground(Color.decode("#715d42"));
@@ -240,23 +243,29 @@ public class Main implements KeyListener, ActionListener{
 
 		}
 
-		if(e.getSource() == easyBut) {
+		if (e.getSource() == easyBut) {
 			whichLevel = 1;
 
-			KeyboardTemplate keyboard = new KeyboardTemplate();
+			Play play = new Play();
 
 		}
 
 
-		if(e.getSource() == mediumBut) {
+		if (e.getSource() == mediumBut) {
 			whichLevel = 2;
-			KeyboardTemplate keyboard = new KeyboardTemplate();
+			Play play = new Play();
 
 		}
 
-		if(e.getSource() == hardBut) {
+		if (e.getSource() == hardBut) {
 			whichLevel = 3;
-			KeyboardTemplate keyboard = new KeyboardTemplate();
+			Play play = new Play();
+
+		}
+
+		if (e.getSource() == importBut) {
+			whichLevel = 4;
+			Play play = new Play();
 
 		}
 

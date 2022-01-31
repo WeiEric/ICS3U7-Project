@@ -10,7 +10,7 @@ import javax.swing.*;
 /**
  * Class Signup, implements ActionListener
  * Creates account info from user input and writes account info into accountInfo.txt
- * @author [ insert author here ]
+ * @author author
  *
  */
 public class Signup implements ActionListener{
