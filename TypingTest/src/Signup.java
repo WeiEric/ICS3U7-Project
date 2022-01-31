@@ -1,34 +1,25 @@
+import javax.swing.*;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.io.*;
 
-import javax.swing.*;
 
-/**
- * Class Signup, implements ActionListener
- * Creates account info from user input and writes account info into accountInfo.txt
- * @author author
- *
- */
 public class Signup implements ActionListener{
 
 	static String file = "accountInfo.txt";
 	static String line;
 	JTextField usernameText;
 	JPasswordField passwordText;
-	Font f = new Font("Verdana", Font.PLAIN, 22);
-	Font buttonf = new Font("Verdana", Font.PLAIN, 12);
 	String user, pass;
 	JButton finish;
 	HashMap<String,String> signupInfo;
+	Font buttonFont = new Font("Verdana", Font.BOLD+Font.ITALIC, 12);
+	Font basicFont = new Font("Verdana", Font.BOLD+Font.ITALIC, 23);
 
-	/**
-	 * Signup constructor
-	 * Creates the signup page GUI and writes username and password into text file
-	 */
 	Signup() {
 		JFrame signupFrame = new JFrame();
 		signupInfo = new HashMap<>();
@@ -37,6 +28,7 @@ public class Signup implements ActionListener{
 		finish = new JButton("Sign up");
 
 		signupFrame.setSize(550,300);
+		signupFrame.getContentPane().setBackground(Color.decode("#8e8475"));
 
 		//store all the info from the text file into the hashmap
 
@@ -62,12 +54,14 @@ public class Signup implements ActionListener{
 
 		JLabel username = new JLabel("USERNAME");
 		username.setBounds(60,50,180,60);
-		username.setFont(f);
+		username.setFont(basicFont);
+		username.setForeground(Color.white);
 		signupFrame.add(username);
 
 		JLabel password = new JLabel("PASSWORD");
 		password.setBounds(60,120,180,60);
-		password.setFont(f);
+		password.setFont(basicFont);
+		password.setForeground(Color.white);
 		signupFrame.add(password);
 
 		usernameText.setBounds(260,60,180,45);
@@ -77,12 +71,12 @@ public class Signup implements ActionListener{
 		signupFrame.add(passwordText);
 
 		finish.setBounds(400,210,100,30);
-		finish.setFont(buttonf);
+		finish.setBackground(Color.decode("#a6a397"));
+		finish.setBorder(BorderFactory.createLineBorder(Color.white, 5));
+		finish.setForeground(Color.white);
+		finish.setFont(buttonFont);
 		finish.addActionListener(new ActionListener() {
 
-			/**
-			 * writes info into text document when finish button is pressec
-			 */
 			public void actionPerformed(ActionEvent e)
 			{
 				if (e.getSource() == finish) {
@@ -92,6 +86,8 @@ public class Signup implements ActionListener{
 					//check if username is already taken
 					if (signupInfo.containsKey(u) == true) {
 						JOptionPane.showMessageDialog(signupFrame, "Username taken, please retry.");
+						usernameText.setText("");
+						passwordText.setText("");
 					}
 
 					else {
