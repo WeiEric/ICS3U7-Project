@@ -1,19 +1,20 @@
+import javax.swing.*;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 import java.util.HashMap;
-
-import javax.swing.*;
+import java.io.*;
 
 /**
  * Class Login, implements ActionListener
  * Logs user in based on information from accountInfo.txt
  * If username and password match one in accountInfo document, user is logged in
- * @author author
+ * @author [ insert author here ]
  *
  */
+
 public class Login implements ActionListener{
 
 	static String file = "accountInfo.txt";
@@ -25,11 +26,10 @@ public class Login implements ActionListener{
 	public String user, pass;
 	JButton done;
 	public HashMap<String,String> loginInfo;
+	Font buttonFont = new Font("Verdana", Font.BOLD+Font.ITALIC, 12);
+	Font basicFont = new Font("Verdana", Font.BOLD+Font.ITALIC, 23);
 
-	/**
-	 * Login constructor
-	 * Creates login page GUI and reads information from document
-	 */
+
 	Login() {
 		JFrame loginFrame = new JFrame();
 		loginInfo = new HashMap<>();
@@ -38,6 +38,7 @@ public class Login implements ActionListener{
 		done = new JButton("Login");
 
 		loginFrame.setSize(550,300);
+		loginFrame.getContentPane().setBackground(Color.decode("#8e8475"));
 
 		//store all the info from the text file into the hashmap
 		try {
@@ -61,12 +62,14 @@ public class Login implements ActionListener{
 
 		JLabel username = new JLabel("USERNAME");
 		username.setBounds(60,50,180,60);
-		username.setFont(f);
+		username.setFont(basicFont);
+		username.setForeground(Color.white);
 		loginFrame.add(username);
 
 		JLabel password = new JLabel("PASSWORD");
 		password.setBounds(60,120,180,60);
-		password.setFont(f);
+		password.setFont(basicFont);
+		password.setForeground(Color.white);
 		loginFrame.add(password);
 
 		usernameText.setBounds(260,60,180,45);
@@ -76,18 +79,18 @@ public class Login implements ActionListener{
 		loginFrame.add(passwordText);
 
 		done.setBounds(400,210,100,30);
-		done.setFont(buttonf);
+		done.setBackground(Color.decode("#a6a397"));
+		done.setBorder(BorderFactory.createLineBorder(Color.white, 5));
+		done.setForeground(Color.white);
+		done.setFont(buttonFont);
 		done.addActionListener(new ActionListener() {
 
-			/**
-			 * Checks if username and matching password entered by the user equals any username and password pair in accountInfo.txt
-			 */
 			public void actionPerformed(ActionEvent e)
 			{
 				if (e.getSource() == done) {
 					String u = usernameText.getText();
 					String p = passwordText.getText();
-
+			
 					//check if the username exists 
 					if(loginInfo.containsKey(u)) {
 						if((loginInfo.get(u).equals(p))) { //check if password is equal to the id
@@ -96,11 +99,15 @@ public class Login implements ActionListener{
 						}
 						else {
 							JOptionPane.showMessageDialog(loginFrame, "Login unsuccessful.");
+							usernameText.setText("");
+							passwordText.setText("");
 						}
 					}
-
+					
 					else {
 						JOptionPane.showMessageDialog(loginFrame, "Login unsuccessful.");
+						usernameText.setText("");
+						passwordText.setText("");
 					}
 
 				}
